@@ -237,7 +237,7 @@ export default function App() {
         <MapViewDirections
           origin={source}
           destination={destination}
-          apikey="AIzaSyAdfMRyYMbZb3ZqcTXtPj9QZEbo-C__cw8"
+          apikey=""
           strokeWidth={3}
           strokeColor="hotpink"
         />
