@@ -182,6 +182,7 @@ import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import * as Location from 'expo-location';
+import HomePage from './components/Home';
 
 const origin = { latitude: 28.5355, longitude: 77.3910 }; // Default origin (Delhi)
 const destination = { latitude: 19.0760, longitude: 72.8777 }; // Default destination (Mumbai)
@@ -191,21 +192,21 @@ export default function App() {
   const [destination, setDestination] = useState(destination);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
+  // useEffect(() => {
+  //   (async () => {
+  //     let { status } = await Location.requestForegroundPermissionsAsync();
+  //     if (status !== 'granted') {
+  //       setErrorMsg('Permission to access location was denied');
+  //       return;
+  //     }
 
-      let location = await Location.getCurrentPositionAsync({});
-      setSource({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
-    })();
-  }, []);
+  //     let location = await Location.getCurrentPositionAsync({});
+  //     setSource({
+  //       latitude: location.coords.latitude,
+  //       longitude: location.coords.longitude,
+  //     });
+  //   })();
+  // }, []);
 
   const handleSetDestination = async () => {
     try {
@@ -225,34 +226,35 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <MapView style={styles.map} initialRegion={{
-        latitude: source.latitude,
-        longitude: source.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}>
-        <Marker coordinate={source} title="Current Location" />
-        <Marker coordinate={destination} title="Destination" />
-        <MapViewDirections
-          origin={source}
-          destination={destination}
-          apikey=""
-          strokeWidth={3}
-          strokeColor="hotpink"
-        />
-      </MapView>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter destination"
-          value={destination}
-          onChangeText={setDestination}
-        />
-        <Button title="Set" onPress={handleSetDestination} />
-      </View>
-      {errorMsg && <Text style={styles.errorMsg}>{errorMsg}</Text>}
-    </View>
+    // <View style={styles.container}>
+    //   <MapView style={styles.map} initialRegion={{
+    //     latitude: source.latitude,
+    //     longitude: source.longitude,
+    //     latitudeDelta: 0.0922,
+    //     longitudeDelta: 0.0421,
+    //   }}>
+    //     <Marker coordinate={source} title="Current Location" />
+    //     <Marker coordinate={destination} title="Destination" />
+    //     <MapViewDirections
+    //       origin={source}
+    //       destination={destination}
+    //       apikey=""
+    //       strokeWidth={3}
+    //       strokeColor="hotpink"
+    //     />
+    //   </MapView>
+    //   <View style={styles.inputContainer}>
+    //     <TextInput
+    //       style={styles.input}
+    //       placeholder="Enter destination"
+    //       value={destination}
+    //       onChangeText={setDestination}
+    //     />
+    //     <Button title="Set" onPress={handleSetDestination} />
+    //   </View>
+    //   {errorMsg && <Text style={styles.errorMsg}>{errorMsg}</Text>}
+    // </View>
+    <HomePage/>
   );
 }
 
