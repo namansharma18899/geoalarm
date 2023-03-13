@@ -178,7 +178,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import { StyleSheet,ImageBackground, View, Text, TextInput, Button } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import * as Location from 'expo-location';
@@ -224,37 +224,13 @@ export default function App() {
       setErrorMsg('Error fetching location');
     }
   };
+  const image = {uri: 'Get started in Canva.png'};
 
   return (
-    // <View style={styles.container}>
-    //   <MapView style={styles.map} initialRegion={{
-    //     latitude: source.latitude,
-    //     longitude: source.longitude,
-    //     latitudeDelta: 0.0922,
-    //     longitudeDelta: 0.0421,
-    //   }}>
-    //     <Marker coordinate={source} title="Current Location" />
-    //     <Marker coordinate={destination} title="Destination" />
-    //     <MapViewDirections
-    //       origin={source}
-    //       destination={destination}
-    //       apikey=""
-    //       strokeWidth={3}
-    //       strokeColor="hotpink"
-    //     />
-    //   </MapView>
-    //   <View style={styles.inputContainer}>
-    //     <TextInput
-    //       style={styles.input}
-    //       placeholder="Enter destination"
-    //       value={destination}
-    //       onChangeText={setDestination}
-    //     />
-    //     <Button title="Set" onPress={handleSetDestination} />
-    //   </View>
-    //   {errorMsg && <Text style={styles.errorMsg}>{errorMsg}</Text>}
-    // </View>
-    <HomePage/>
+      <HomePage/>
+    // <ImageBackground source={require('./assets/temp.png')} resizeMode="cover" style={styles.image}>
+    //   <Text style={styles.text}>Inside</Text>
+    // </ImageBackground>
   );
 }
 
@@ -269,6 +245,9 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
     width: '100%',
+  },  image: {
+    flex: 1,
+    justifyContent: 'center',
   },
   inputContainer: {
     flexDirection: 'row',
