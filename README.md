@@ -7,7 +7,7 @@
 ```
 $ cd geoalarm
 $ npm install
-$ npx expo start
+$ npm start -- --tunnel
 ```
 ## Important
 * Your app might crash or fail to start if there is any dependency mismatch. The package should be inline with each other in order to work properly.
